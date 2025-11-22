@@ -22,7 +22,7 @@ echo  $opt3
 module load gcc/11.4.0
 
 
-baypass="//scratch/cqh6wn/baypass_public/sources/g_baypass"
+baypass="/scratch/cqh6wn/baypass_public/sources/g_baypass"
 cd /scratch/cqh6wn/Class/baypass_project/results
 
 #RUNNING BAYPASS 
