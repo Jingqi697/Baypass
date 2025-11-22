@@ -1,0 +1,41 @@
+#!/bin/bash
+#SBATCH -J aim1_baypass
+#SBATCH -N 1
+#SBATCH -c 10
+#SBATCH --mem 8G
+#SBATCH -t 20:00:00
+#SBATCH -p standard
+#SBATCH -A berglandlab
+#SBATCH --array=1-50
+#SBATCH -o /scratch/cqh6wn/Class/baypass_project/results/baypass_%a.out
+#SBATCH -e /scratch/cqh6wn/Class/baypass_project/results/baypass_%a.err
+
+
+a=1
+# Control file
+OPTS=$(sed -n "${SLURM_ARRAY_TASK_ID}"p /scratch/cqh6wn/Class/baypass_project/baypass_control_file.txt)
+for i in $OPTS; do declare "opt$a=$i"; ((a++)); done
+echo  $opt1
+echo  $opt2
+echo  $opt3
+
+module load gcc/11.4.0
+
+
+baypass="//scratch/cqh6wn/baypass_public/sources/g_baypass"
+cd /scratch/cqh6wn/Class/baypass_project/results
+
+#RUNNING BAYPASS 
+$baypass -gfile /scratch/cqh6wn/Class/baypass_project/inputs/subpool_"${opt1}".genobaypass \
+-poolsizefile   /scratch/cqh6wn/Class/baypass_project/inputs/subpool_"${opt1}".poolsize \
+-outprefix "${opt3}" \
+-nthreads 10  \
+-contrastfile "${opt2}" \
+-seed 12345
+
+# Results
+tar -czvf result_subpool_"${opt1}".tar.gz \
+"${opt3}"_summary_beta_params.out \
+"${opt3}"_summary_contrast.out 
+
+echo "Job Complete"
