@@ -33,9 +33,4 @@ $baypass -gfile /scratch/cqh6wn/Class/baypass_project/inputs/subpool_"${opt1}".g
 -contrastfile "${opt2}" \
 -seed 12345
 
-# Results
-tar -czvf result_subpool_"${opt1}".tar.gz \
-"${opt3}"_summary_beta_params.out \
-"${opt3}"_summary_contrast.out 
-
 echo "Job Complete"
