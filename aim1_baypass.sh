@@ -7,8 +7,8 @@
 #SBATCH -p standard
 #SBATCH -A berglandlab
 #SBATCH --array=1-50
-#SBATCH -o /scratch/cqh6wn/Class/baypass_project/results/baypass_%a.out
-#SBATCH -e /scratch/cqh6wn/Class/baypass_project/results/baypass_%a.err
+#SBATCH -o /scratch/cqh6wn/Class/baypass_project_updated/results/baypass_%a.out
+#SBATCH -e /scratch/cqh6wn/Class/baypass_project_updated/results/baypass_%a.err
 
 
 a=1
@@ -23,7 +23,7 @@ module load gcc/11.4.0
 
 
 baypass="/scratch/cqh6wn/baypass_public/sources/g_baypass"
-cd /scratch/cqh6wn/Class/baypass_project/results
+cd /scratch/cqh6wn/Class/baypass_project_updated/results
 
 #RUNNING BAYPASS 
 $baypass -gfile /scratch/cqh6wn/Class/baypass_project_updated/inputs/subpool_"${opt1}".genobaypass \
