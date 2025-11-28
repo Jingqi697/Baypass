@@ -13,7 +13,7 @@
 
 a=1
 # Control file
-OPTS=$(sed -n "${SLURM_ARRAY_TASK_ID}"p /scratch/cqh6wn/Class/baypass_project/baypass_control_file.txt)
+OPTS=$(sed -n "${SLURM_ARRAY_TASK_ID}"p /scratch/cqh6wn/Class/baypass_project_updated/baypass_control_file.txt)
 for i in $OPTS; do declare "opt$a=$i"; ((a++)); done
 echo  $opt1
 echo  $opt2
@@ -26,8 +26,8 @@ baypass="/scratch/cqh6wn/baypass_public/sources/g_baypass"
 cd /scratch/cqh6wn/Class/baypass_project/results
 
 #RUNNING BAYPASS 
-$baypass -gfile /scratch/cqh6wn/Class/baypass_project/inputs/subpool_"${opt1}".genobaypass \
--poolsizefile   /scratch/cqh6wn/Class/baypass_project/inputs/subpool_"${opt1}".poolsize \
+$baypass -gfile /scratch/cqh6wn/Class/baypass_project_updated/inputs/subpool_"${opt1}".genobaypass \
+-poolsizefile   /scratch/cqh6wn/Class/baypass_project_updated/inputs/subpool_"${opt1}".poolsize \
 -outprefix "${opt3}" \
 -nthreads 10  \
 -contrastfile "${opt2}" \
